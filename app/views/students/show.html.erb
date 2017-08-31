@@ -1,0 +1,15 @@
+<p>
+ First Name: <%= @student.first_name %>
+</p>
+<p>
+ Last Name: <%= @student.last_name %>
+</p>
+<p>
+ Date of Birth: <%= @student.dob %>
+</p>
+<p>
+ Parents/Guardian Name: <%= @student.parent_guardian_name %>
+</p>
+<p>
+ Class: <%= @student.division.try("name") %>
+</p>

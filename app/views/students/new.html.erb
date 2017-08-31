@@ -1,0 +1,19 @@
+<%= form_for @student, url: students_path do |f| %>
+   <p>   
+   <%= f.label 'first_name:' %>
+   <%= f.text_field :first_name %>
+   </p>
+   <p>   
+   <%= f.label 'last_name:' %>
+   <%= f.text_field :last_name %>
+   </p>
+      <p>   
+   <%= f.label 'date_of_birth:' %>
+   <%= f.date_field :dob %>
+   </p>
+      <p>   
+   <%= f.label 'parent_guardian_name:' %>
+   <%= f.text_field :parent_guardian_name %>
+   </p>
+  <%= f.submit 'create' %>
+<%end%>

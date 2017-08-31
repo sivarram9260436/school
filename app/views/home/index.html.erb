@@ -1,0 +1,40 @@
+<h2>    Students </h2>
+<div><%= flash[:notice] if flash[:notice] %></div>
+<br>
+<%= form_tag students_mark_attendance_path, :method => 'post' do %>
+<% if @students.present? %>
+<% @students.each do |student| %>
+  <%= check_box_tag "student_ids[]", student.id %>
+  <%= link_to student.full_name ,student_path(student) %> <br>
+  <p class="getting_attendance" id="get_attendance_<%=student.id%>">Get attendance</p>
+<% end %>
+<% end %>
+<hr>
+<%= will_paginate @students %>
+<p>
+  Attandence For: <%= select_date Date.today %>
+  <br><br>
+  Present/Absent: <%= select_tag "mark_as", options_for_select(["present","absent"]) %>
+  <br><br>
+  <%= submit_tag 'Mark Attandence' %>
+</p>
+<% end %>
+
+<script type="text/javascript">
+$(".getting_attendance").on('click', function () {
+        var id = $(this).attr('id').split("_")[2];
+        $.ajax({
+            type: 'GET',
+            url: '/fetch_attendance',
+            datatype: 'script',
+            data: {id: id},
+            success: function (data) {
+              var id=1
+                  $("#getting_attendance_"+id).html("cg");
+                }
+        })
+    });
+</script>
+
+<%= link_to "Sign Out", login_sign_out_path %>
+<%= link_to "Get as CSV", home_csv_path %>
